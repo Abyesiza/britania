@@ -1,3 +1,14 @@
+:root {
+  --brand-red: #D50630;
+  --light-gray: #F8F9FA;
+  --secondary-gray: #E9ECEF;
+  --text-gray: #6C757D;
+  --heading-gray: #495057;
+  --steel-blue: #4682B4;
+  --warm-beige: #F5DEB3;
+  --earthy-brown: #8B4513;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

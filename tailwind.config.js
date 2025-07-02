@@ -4,22 +4,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        'brand': {
-          50: '#fff1f1',
-          100: '#ffdfdf',
-          200: '#ffc5c5',
-          300: '#ff9d9d',
-          400: '#ff6464',
-          500: '#ff2424',
-          600: '#ed1515',
-          700: '#c80d0d',
-          800: '#a50f0f',
-          900: '#881414',
-          950: '#4b0404',
-        }
+        'brand-red': 'var(--brand-red)',
+        'light-gray': 'var(--light-gray)',
+        'secondary-gray': 'var(--secondary-gray)',
+        'text-gray': 'var(--text-gray)',
+        'heading-gray': 'var(--heading-gray)',
+        'steel-blue': 'var(--steel-blue)',
+        'warm-beige': 'var(--warm-beige)',
+        'earthy-brown': 'var(--earthy-brown)',
       },
       fontFamily: {
-        'sans': ['Inter var', 'system-ui', '-apple-system', 'sans-serif'],
+        'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
         'display': ['Playfair Display', 'serif'],
       },
       borderWidth: {
