@@ -5,19 +5,24 @@ const Promotions = () => {
   return (
     <div className="bg-light-gray text-text-gray">
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-brand-red to-red-900 py-16">
-        <div className="absolute inset-0">
+      <div className="relative overflow-hidden bg-gradient-to-br from-brand-red to-red-900 py-20 min-h-[500px] flex items-center">
+        <div className="absolute inset-0">  
           <img 
             src="/IMG_4045.jpg" 
-            alt="Promotions banner" 
-            className="w-full h-full object-cover"
+            alt="Promotions at Britania" 
+            className="w-full h-full object-cover object-center opacity-70"
           />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-red/60 to-red-900/60"></div>
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">Promotions & Events</h1>
-          <p className="text-xl text-red-100 max-w-2xl mx-auto">
-            Discover the latest offers and events from Britania Allied Industries (U) Ltd, makers of SPLASH products
-          </p>
+        <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
+          <div className="bg-black/20 backdrop-blur-sm rounded-2xl p-8 sm:p-10 lg:p-12 border border-white/20">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 drop-shadow-lg">
+              Promotions & Events
+            </h1>
+            <p className="text-xl sm:text-2xl text-red-100 max-w-3xl mx-auto leading-relaxed">
+              Explore the latest offers, discounts, and events from Britania Allied Industries—bringing value and excitement to Uganda
+            </p>
+          </div>
         </div>
       </div>
 

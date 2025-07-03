@@ -5,19 +5,24 @@ const Products = () => {
   return (
     <div className="bg-light-gray text-text-gray">
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-brand-red to-red-900 py-16">
-        <div className="absolute inset-0">
+      <div className="relative overflow-hidden bg-gradient-to-br from-brand-red to-red-900 py-20 min-h-[500px] flex items-center">
+        <div className="absolute inset-0">  
           <img 
             src="/Picture1.png" 
-            alt="Products background" 
-            className="w-full h-full object-cover"
+            alt="Products at Britania" 
+            className="w-full h-full object-cover object-center opacity-70"
           />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-red/60 to-red-900/60"></div>
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">Our Products</h1>
-          <p className="text-xl text-red-100 max-w-2xl mx-auto">
-            Discover Britania's range of quality products, commonly known as SPLASH, bringing refreshment to millions of families in Uganda
-          </p>
+        <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
+          <div className="bg-black/20 backdrop-blur-sm rounded-2xl p-8 sm:p-10 lg:p-12 border border-white/20">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 drop-shadow-lg">
+              Britania Product Range
+            </h1>
+            <p className="text-xl sm:text-2xl text-red-100 max-w-3xl mx-auto leading-relaxed">
+              Discover our full range of beverages, biscuits, and more—crafted for Uganda by Britania Allied Industries
+            </p>
+          </div>
         </div>
       </div>
       

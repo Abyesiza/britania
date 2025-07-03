@@ -66,7 +66,7 @@ const Home = () => {
               {/* Badge */}
               <div className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-8">
                 <Award className="h-5 w-5 text-warm-beige mr-2" />
-                <span className="text-warm-beige text-sm font-semibold">EST. 1995 • ISO CERTIFIED • 25+ YEARS OF EXCELLENCE</span>
+                <span className="text-warm-beige text-sm font-semibold">EST. 1991 • HOUSE OF DAWDA GROUP • 30+ YEARS OF EXCELLENCE</span>
               </div>
 
               {/* Main Heading */}
@@ -75,32 +75,32 @@ const Home = () => {
                   BRITANIA
                 </span>
                 <span className="block text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-warm-beige mt-2">
-                  East Africa's Choice
+                  Uganda's Trusted Choice
                 </span>
               </h1>
 
               {/* Subtitle */}
               <p className="text-xl sm:text-2xl lg:text-3xl text-red-100 max-w-4xl mx-auto mb-12 leading-relaxed font-light">
-                Crafting <span className="text-warm-beige font-semibold">premium beverages</span> and <span className="text-warm-beige font-semibold">delicious snacks</span> that bring families together across East Africa
+                Crafting <span className="text-warm-beige font-semibold">premium fruit drinks</span>, <span className="text-warm-beige font-semibold">quality biscuits</span>, and <span className="text-warm-beige font-semibold">delicious confectioneries</span> that bring families together across Uganda
               </p>
 
               {/* Stats */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto mb-16">
                 <div className="text-center">
-                  <div className="text-3xl sm:text-4xl font-bold text-warm-beige mb-2">5M+</div>
-                  <div className="text-sm text-red-200">Happy Customers</div>
+                  <div className="text-3xl sm:text-4xl font-bold text-warm-beige mb-2">7K+</div>
+                  <div className="text-sm text-red-200">Group Employees</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl sm:text-4xl font-bold text-warm-beige mb-2">6</div>
-                  <div className="text-sm text-red-200">Countries</div>
+                  <div className="text-3xl sm:text-4xl font-bold text-warm-beige mb-2">$380M</div>
+                  <div className="text-sm text-red-200">Group Revenue</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl sm:text-4xl font-bold text-warm-beige mb-2">25+</div>
+                  <div className="text-3xl sm:text-4xl font-bold text-warm-beige mb-2">30+</div>
                   <div className="text-sm text-red-200">Years</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl sm:text-4xl font-bold text-warm-beige mb-2">ISO</div>
-                  <div className="text-sm text-red-200">Certified</div>
+                  <div className="text-3xl sm:text-4xl font-bold text-warm-beige mb-2">1962</div>
+                  <div className="text-sm text-red-200">Group Founded</div>
                 </div>
               </div>
 
@@ -171,31 +171,31 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               { 
-                name: 'Splash Premium Juices', 
+                name: 'Splash Fruit Drinks', 
                 image: '/WhatsApp Image 2023-07-27 at 5.32.43 PM.jpeg.jpg', 
-                href: '/products#juices', 
+                href: '/products#splash', 
                 tag: 'Bestseller',
                 color: 'bg-gradient-to-br from-orange-500 to-red-500',
-                description: 'Made from the finest fruits with no artificial preservatives. Refreshingly natural taste in every sip.',
-                features: ['100% Natural', 'No Preservatives', '6 Delicious Flavors']
+                description: 'Our flagship fruit drink brand loved by families across Uganda. Refreshing and delicious.',
+                features: ['Premium Fruit Drinks', 'Trusted Brand', 'Multiple Flavors']
               },
               { 
-                name: 'Britania Premium Biscuits', 
+                name: 'Britania Quality Biscuits', 
                 image: '/IMG_4045.jpg', 
                 href: '/products#biscuits', 
-                tag: 'New Recipe',
+                tag: 'Since 1991',
                 color: 'bg-gradient-to-br from-amber-500 to-orange-600',
-                description: 'Crispy, golden, and perfectly baked. Our signature biscuits are made with premium ingredients.',
-                features: ['Premium Ingredients', 'Crispy Texture', 'Family Pack Available']
+                description: 'Crispy, golden, and perfectly baked. Our signature biscuits and confectioneries made with care.',
+                features: ['Quality Ingredients', 'Crispy Texture', 'Family Favorite']
               },
               { 
-                name: 'Pure Refresh Water', 
+                name: 'Premium Beverage Range', 
                 image: '/Picture1.png', 
-                href: '/products#water', 
-                tag: 'Pure & Clean',
+                href: '/products#beverages', 
+                tag: 'Complete Range',
                 color: 'bg-gradient-to-br from-blue-500 to-cyan-500',
-                description: 'Purified through advanced filtration technology. Hydration you can trust, purity you can taste.',
-                features: ['Advanced Filtration', 'BPA-Free Bottles', 'Multiple Sizes']
+                description: 'Including Yojus, SunSip, TopUp and more. Complete beverage solutions for every occasion.',
+                features: ['Multiple Brands', 'Quality Assured', 'Wide Distribution']
               },
             ].map((product, idx) => (
               <div key={product.name} className="group">
@@ -305,7 +305,7 @@ const Home = () => {
           <div className="text-center mb-10">
             <div className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-4">
               <Clock className="h-5 w-5 text-warm-beige mr-2" />
-              <span className="text-warm-beige text-sm font-semibold">EST. 1995 • 25+ YEARS OF EXCELLENCE</span>
+              <span className="text-warm-beige text-sm font-semibold">EST. 1991 • 30+ YEARS OF EXCELLENCE</span>
             </div>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-4 leading-tight">
               A Legacy of
@@ -328,7 +328,7 @@ const Home = () => {
                   <h3 className="text-xl font-bold text-warm-beige">Our Journey</h3>
                 </div>
                 <p className="text-white text-base leading-relaxed">
-                  Since 1995, Britania has been at the forefront of East Africa's food and beverage industry. What started as a small family business has grown into a trusted regional brand, serving over 5 million customers across 6 countries.
+                  Since 1991, Britania Allied Industries Limited has been a proud member of the House of Dawda Group, manufacturing quality biscuits, fruit drinks, and confectioneries. Part of a respected conglomerate with roots dating back to 1962, founded by Hasmukh Dawda.
                 </p>
               </div>
               
@@ -340,7 +340,7 @@ const Home = () => {
                   <h3 className="text-xl font-bold text-warm-beige">Our Promise</h3>
                 </div>
                 <p className="text-white text-base leading-relaxed">
-                  Every product that bears the Britania name represents our unwavering commitment to quality, authenticity, and the trust that families place in us every day.
+                  Every product that bears the Britania name represents our unwavering commitment to quality manufacturing, from our headquarters in Kampala's Ntinda Industrial Area to families across Uganda.
                 </p>
               </div>
               
@@ -363,10 +363,10 @@ const Home = () => {
             {/* Stats Grid */}
             <div className="grid grid-cols-2 gap-3">
               {[
-                { icon: Award, number: "ISO", label: "Certified Quality", color: "from-yellow-400 to-orange-500" },
-                { icon: Users, number: "5M+", label: "Satisfied Customers", color: "from-green-400 to-blue-500" },
-                { icon: MapPin, number: "6", label: "Countries", color: "from-purple-400 to-pink-500" },
-                { icon: Clock, number: "25+", label: "Years Experience", color: "from-blue-400 to-cyan-500" }
+                { icon: Award, number: "1962", label: "Group Founded", color: "from-yellow-400 to-orange-500" },
+                { icon: Users, number: "7K+", label: "Group Employees", color: "from-green-400 to-blue-500" },
+                { icon: MapPin, number: "Uganda", label: "Headquarters", color: "from-purple-400 to-pink-500" },
+                { icon: Clock, number: "30+", label: "Years Experience", color: "from-blue-400 to-cyan-500" }
               ].map((stat, idx) => (
                 <div key={idx} className="group text-center bg-white/10 backdrop-blur-md rounded-3xl p-4 border border-white/20 hover:bg-white/15 hover:scale-105 transition-all duration-300">
                   <div className={`w-12 h-12 mx-auto mb-3 bg-gradient-to-br ${stat.color} rounded-2xl flex items-center justify-center shadow-lg`}>
@@ -433,7 +433,7 @@ const Home = () => {
               {
                 icon: Briefcase,
                 title: "Join Our Team",
-                description: "Be part of a dynamic team that's shaping the future of food and beverages in East Africa.",
+                description: "Be part of a dynamic team that's shaping the future of food and beverages in Uganda.",
                 href: "/careers",
                 color: "from-brand-red to-red-600",
                 bgColor: "bg-gradient-to-br from-red-50 to-orange-50"
@@ -498,7 +498,7 @@ const Home = () => {
             </div>
             <h2 className="text-4xl sm:text-5xl font-black text-heading-gray mb-4">
               Trusted by Families
-              <span className="block text-brand-red">Across East Africa</span>
+              <span className="block text-brand-red">Across Uganda</span>
             </h2>
             <p className="text-lg sm:text-xl text-text-gray max-w-3xl mx-auto leading-relaxed">
               Here's what our customers say about their 
@@ -518,7 +518,7 @@ const Home = () => {
               },
               {
                 name: "David Mwangi",
-                location: "Nairobi, Kenya",
+                location: "Jinja, Uganda",
                 image: "https://randomuser.me/api/portraits/men/32.jpg",
                 text: "As a retailer, I trust Britania products because my customers always come back for more. The brand reputation speaks for itself.",
                 rating: 5
@@ -617,27 +617,27 @@ const Home = () => {
           
           {/* Subtitle */}
           <p className="text-lg sm:text-xl lg:text-2xl text-red-100 max-w-4xl mx-auto mb-6 leading-relaxed font-light">
-            Join millions of satisfied customers who choose 
-            <span className="text-warm-beige font-semibold"> Britania for quality and taste</span>
+            Join thousands of satisfied customers who choose 
+            <span className="text-warm-beige font-semibold"> Britania for quality and taste across Uganda</span>
           </p>
           
           {/* Stats Bar */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-8">
             <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-warm-beige mb-1">5M+</div>
-              <div className="text-xs text-red-200">Happy Customers</div>
+              <div className="text-2xl sm:text-3xl font-bold text-warm-beige mb-1">7K+</div>
+              <div className="text-xs text-red-200">Group Employees</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-warm-beige mb-1">6</div>
-              <div className="text-xs text-red-200">Countries</div>
+              <div className="text-2xl sm:text-3xl font-bold text-warm-beige mb-1">$380M</div>
+              <div className="text-xs text-red-200">Group Revenue</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-warm-beige mb-1">25+</div>
+              <div className="text-2xl sm:text-3xl font-bold text-warm-beige mb-1">30+</div>
               <div className="text-xs text-red-200">Years</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-warm-beige mb-1">ISO</div>
-              <div className="text-xs text-red-200">Certified</div>
+              <div className="text-2xl sm:text-3xl font-bold text-warm-beige mb-1">1991</div>
+              <div className="text-xs text-red-200">Est. Date</div>
             </div>
           </div>
           
@@ -670,9 +670,9 @@ const Home = () => {
           {/* Additional Info */}
           <div className="pt-4 border-t border-white/20">
             <p className="text-red-200 text-base">
-              🌟 <span className="text-warm-beige font-semibold">Free delivery</span> on orders over $50 | 
-              💯 <span className="text-warm-beige font-semibold">100% satisfaction</span> guaranteed | 
-              🏆 <span className="text-warm-beige font-semibold">Award-winning</span> customer service
+              🏭 <span className="text-warm-beige font-semibold">Manufactured in Uganda</span> | 
+              🏆 <span className="text-warm-beige font-semibold">30+ years</span> of experience | 
+              🌟 <span className="text-warm-beige font-semibold">Trusted brands</span> like Splash, Yojus, SunSip & TopUp
             </p>
           </div>
         </div>
