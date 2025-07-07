@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Award, Heart, Briefcase, Gift, Star, MapPin, Users, Clock } from 'lucide-react';
+import { Award, Heart, Briefcase, Gift, Star, MapPin, Users, Clock, ChevronLeft, ChevronRight, Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
 
 // Custom hook for scroll-triggered animations
 const useIntersectionObserver = <T extends HTMLElement = HTMLElement>(
@@ -27,18 +27,193 @@ const useIntersectionObserver = <T extends HTMLElement = HTMLElement>(
   return [ref, isVisible];
 };
 
+interface Product {
+  id: number;
+  name: string;
+  category: string;
+  image: string;
+  discount: string;
+  description: string;
+  href: string;
+}
+
+const HeroProductCarousel = ({ products }: { products: Product[] }) => {
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setCurrentSlide((prev) => (prev + 1) % products.length);
+        }, 5000);
+        return () => clearTimeout(timer);
+    }, [currentSlide, products.length]);
+
+    const nextSlide = () => {
+        setCurrentSlide((prev) => (prev + 1) % products.length);
+    };
+
+    const prevSlide = () => {
+        setCurrentSlide((prev) => (prev - 1 + products.length) % products.length);
+    };
+
+    return (
+        <div className="relative w-full max-w-md mx-auto lg:max-w-lg">
+            <div className="relative h-80 sm:h-96 overflow-hidden rounded-3xl shadow-2xl border-4 border-white/20 backdrop-blur-md">
+                {products.map((product, index) => (
+                    <div
+                        key={product.id}
+                        className={`absolute inset-0 bg-black/20 transition-all duration-700 ease-in-out ${
+                            index === currentSlide ? 'opacity-100 translate-x-0' : 'opacity-0'
+                        } ${ index > currentSlide ? 'translate-x-full' : '-translate-x-full' }`}
+                    >
+                        <img
+                            src={product.image}
+                            alt={product.name}
+                            className="w-full h-full object-contain"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/10"></div>
+                        <div className="absolute bottom-0 left-0 p-6">
+                            <div className="mb-2 inline-block bg-brand-red text-white text-xs font-bold px-3 py-1 rounded-full">{product.discount}</div>
+                            <h3 className="text-2xl font-bold text-white">{product.name}</h3>
+                            <p className="text-warm-beige">{product.category}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            {/* Controls */}
+            <button onClick={prevSlide} className="absolute left-0 top-1/2 -translate-y-1/2 p-3 bg-white/80 hover:bg-white rounded-full text-gray-800 shadow-lg transform -translate-x-1/2 hover:scale-110 transition-all">
+                <ChevronLeft size={24} />
+            </button>
+            <button onClick={nextSlide} className="absolute right-0 top-1/2 -translate-y-1/2 p-3 bg-white/80 hover:bg-white rounded-full text-gray-800 shadow-lg transform translate-x-1/2 hover:scale-110 transition-all">
+                <ChevronRight size={24} />
+            </button>
+
+            {/* Dots */}
+            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex space-x-3">
+                {products.map((_, idx) => (
+                    <button
+                        key={idx}
+                        onClick={() => setCurrentSlide(idx)}
+                        className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                            currentSlide === idx ? 'bg-white scale-125' : 'bg-white/50'
+                        }`}
+                    ></button>
+                ))}
+            </div>
+        </div>
+    );
+};
+
 const Home = () => {
   const [heroTextRef, heroTextVisible] = useIntersectionObserver<HTMLDivElement>({ threshold: 0.5 });
   const [trustBadgeRef, trustBadgeVisible] = useIntersectionObserver<HTMLElement>({ threshold: 0.3 });
   const [productShowcaseRef, productShowcaseVisible] = useIntersectionObserver<HTMLElement>({ threshold: 0.3 });
-  const [brandStoryRef, brandStoryVisible] = useIntersectionObserver<HTMLElement>({ threshold: 0.3 });
   const [engagingContentRef, engagingContentVisible] = useIntersectionObserver<HTMLElement>({ threshold: 0.3 });
   const [testimonialsRef, testimonialsVisible] = useIntersectionObserver<HTMLElement>({ threshold: 0.3 });
+  const [socialsRef, socialsVisible] = useIntersectionObserver<HTMLElement>({ threshold: 0.3 });
+
+  const [currentProductIndex, setCurrentProductIndex] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const nativeImages = [
+    '/Picture1.png',
+    '/Picture2.png',
+    '/Picture3.png',
+    '/Britania Logo.png',
+  ];
+
+  const products: Product[] = [
+    {
+      id: 1,
+      name: "Splash Kachupa",
+      category: "Beverages",
+      image: "/Picture2.png",
+      discount: "REFRESHING",
+      description: "Apple flavored juice drink.",
+      href: "/products#splash"
+    },
+    {
+      id: 2,
+      name: "Yojus Apple",
+      category: "Beverages",
+      image: "/Picture1.png",
+      discount: "FAMILY SIZE",
+      description: "1L pack of delicious apple fruit drink.",
+      href: "/products#yojus"
+    },
+    {
+      id: 3,
+      name: 'Refresh Water',
+      category: "Water",
+      image: "/Picture3.png",
+      discount: "HYDRATE",
+      description: 'Purified drinking water to chill the heat.',
+      href: '/products#water'
+    },
+    {
+      id: 4,
+      name: "Premium Biscuits",
+      category: "Confectionery",
+      image: "/IMG_4045.jpg",
+      discount: "CRUNCHY",
+      description: "Delicious baked biscuits for every occasion.",
+      href: '/products#biscuits'
+    },
+    {
+      id: 5,
+      name: "SunSip Energy Drink",
+      category: "Beverages",
+      image: "https://images.pexels.com/photos/2775860/pexels-photo-2775860.jpeg?auto=compress&cs=tinysrgb&w=400",
+      discount: "10% OFF",
+      description: "Energizing drink for active lifestyles",
+      href: '/products#beverages'
+    },
+    {
+      id: 6,
+      name: "Tomato Sauce",
+      category: "Sauces",
+      image: "https://images.pexels.com/photos/725991/pexels-photo-725991.jpeg?auto=compress&cs=tinysrgb&w=400",
+      discount: "5% OFF",
+      description: "Rich and flavorful tomato sauce",
+      href: '/products#sauces'
+    }
+  ];
+
+  const scrollToProduct = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const cardWidth = 320 + 24; // w-80 (320px) + gap-6 (24px)
+      const scrollAmount = cardWidth * 2;
+      
+      if (direction === 'left') {
+        container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      } else {
+        container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      }
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrollContainerRef.current) {
+        const container = scrollContainerRef.current;
+        const cardWidth = 320 + 24;
+        const newIndex = Math.round(container.scrollLeft / cardWidth);
+        setCurrentProductIndex(newIndex);
+      }
+    };
+
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.addEventListener('scroll', handleScroll);
+      return () => container.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
 
   return (
-    <div className="bg-light-gray text-text-gray">
+    <div className="bg-navy-blue text-white">
       {/* Hero Section - Modern Design */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-brand-red via-red-800 to-red-900 min-h-screen">
+      <div className="relative overflow-hidden bg-gradient-to-br from-brand-red via-blue-800 to-blue-900 min-h-[80vh] flex items-center">
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
           <div className="absolute top-10 left-10 w-72 h-72 bg-warm-beige/10 rounded-full blur-3xl animate-pulse"></div>
@@ -57,86 +232,54 @@ const Home = () => {
         </div>
 
         {/* Main Content */}
-        <div className="relative min-h-screen flex items-center justify-center">
-          <div className="max-w-6xl mx-auto py-16 px-6 sm:py-18 sm:px-8 lg:py-20 lg:px-12 text-center">
+        <div className="relative w-full">
+          <div className="max-w-7xl w-full mx-auto py-12 px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
             <div
               ref={heroTextRef}
-              className={`transform transition-all duration-1000 ease-out ${heroTextVisible ? 'opacity-100 translate-y-0' : 'opacity-90 translate-y-4'}`}
+              className={`transform transition-all duration-1000 ease-out ${heroTextVisible ? 'opacity-100' : 'opacity-0 -translate-y-4'} text-center lg:text-left`}
             >
               {/* Badge */}
-              <div className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-8">
+              <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-6">
                 <Award className="h-5 w-5 text-warm-beige mr-2" />
-                <span className="text-warm-beige text-sm font-semibold">EST. 1991 • HOUSE OF DAWDA GROUP • 30+ YEARS OF EXCELLENCE</span>
+                <span className="text-warm-beige text-xs font-semibold tracking-wider uppercase">30+ Years of Excellence</span>
               </div>
 
               {/* Main Heading */}
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black text-white mb-8 leading-tight">
+              <h1 className="text-4xl sm:text-5xl xl:text-6xl font-black text-white mb-4 leading-tight">
                 <span className="block bg-gradient-to-r from-white via-warm-beige to-white bg-clip-text text-transparent">
                   BRITANIA
                 </span>
-                <span className="block text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-warm-beige mt-2">
+                <span className="block text-3xl sm:text-4xl xl:text-5xl font-bold text-warm-beige mt-1">
                   Uganda's Trusted Choice
                 </span>
               </h1>
 
               {/* Subtitle */}
-              <p className="text-xl sm:text-2xl lg:text-3xl text-red-100 max-w-4xl mx-auto mb-12 leading-relaxed font-light">
-                Crafting <span className="text-warm-beige font-semibold">premium fruit drinks</span>, <span className="text-warm-beige font-semibold">quality biscuits</span>, and <span className="text-warm-beige font-semibold">delicious confectioneries</span> that bring families together across Uganda
+              <p className="text-lg sm:text-xl text-red-100 max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+                Premium fruit drinks, quality biscuits, and delicious confectioneries for families across Uganda.
               </p>
 
-              {/* Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto mb-16">
-                <div className="text-center">
-                  <div className="text-3xl sm:text-4xl font-bold text-warm-beige mb-2">7K+</div>
-                  <div className="text-sm text-red-200">Group Employees</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl sm:text-4xl font-bold text-warm-beige mb-2">$380M</div>
-                  <div className="text-sm text-red-200">Group Revenue</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl sm:text-4xl font-bold text-warm-beige mb-2">30+</div>
-                  <div className="text-sm text-red-200">Years</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl sm:text-4xl font-bold text-warm-beige mb-2">1962</div>
-                  <div className="text-sm text-red-200">Group Founded</div>
-                </div>
-              </div>
-
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
                 <a
                   href="#products"
-                  className="group relative overflow-hidden px-10 py-5 bg-white text-brand-red font-bold text-lg rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 min-w-[200px]"
+                  className="group relative overflow-hidden px-8 py-4 bg-white text-brand-red font-bold text-base rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 min-w-[200px]"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-warm-beige to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="relative flex items-center justify-center">
-                    <span>Explore Products</span>
+                    <span>View Our Products</span>
                     <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                     </svg>
                   </div>
                 </a>
-                
-                <a
-                  href="#story"
-                  className="group px-10 py-5 border-2 border-white text-white font-bold text-lg rounded-2xl hover:bg-white hover:text-brand-red transform hover:scale-105 transition-all duration-300 min-w-[200px] text-center"
-                >
-                  <div className="flex items-center justify-center">
-                    <Heart className="mr-2 w-5 h-5" />
-                    <span>Our Story</span>
-                  </div>
-                </a>
-              </div>
-
-              {/* Scroll Indicator */}
-              <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-                <div className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center">
-                  <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse"></div>
-                </div>
               </div>
             </div>
+            
+            <div className="relative hidden lg:block">
+              <HeroProductCarousel products={products.slice(0, 3)} />
+            </div>
+
           </div>
         </div>
       </div>
@@ -150,112 +293,99 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           {/* Section Header */}
           <div className="text-center mb-10">
-            <div className="inline-block">
-              <div className="flex items-center justify-center mb-4">
-                <div className="w-12 h-1 bg-brand-red rounded-full mr-3"></div>
-                <Star className="h-8 w-8 text-brand-red" />
-                <div className="w-12 h-1 bg-brand-red rounded-full ml-3"></div>
-              </div>
-              <h2 className="text-5xl sm:text-6xl font-black text-heading-gray mb-6">
-                Our Premium
-                <span className="block text-brand-red">Product Range</span>
-              </h2>
-              <p className="text-xl sm:text-2xl text-text-gray max-w-4xl mx-auto leading-relaxed">
-                Discover our carefully crafted selection of beverages, snacks, and confectioneries that have been 
-                <span className="text-brand-red font-semibold"> delighting families for generations</span>
-              </p>
+            <div className="inline-flex items-center justify-center mb-4">
+              <div className="w-12 h-1 bg-brand-red rounded-full mr-3"></div>
+              <Star className="h-8 w-8 text-brand-red" />
+              <div className="w-12 h-1 bg-brand-red rounded-full ml-3"></div>
             </div>
+            <h2 className="text-5xl sm:text-6xl font-black text-heading-gray mb-6">
+              Our Premium
+              <span className="block text-brand-red">Product Range</span>
+            </h2>
+            <p className="text-xl sm:text-2xl text-text-gray max-w-4xl mx-auto leading-relaxed">
+              Discover our carefully crafted selection of beverages, snacks, and confectioneries that have been 
+              <span className="text-brand-red font-semibold"> delighting families for generations</span>
+            </p>
           </div>
           
-          {/* Products Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { 
-                name: 'Splash Fruit Drinks', 
-                image: '/WhatsApp Image 2023-07-27 at 5.32.43 PM.jpeg.jpg', 
-                href: '/products#splash', 
-                tag: 'Bestseller',
-                color: 'bg-gradient-to-br from-orange-500 to-red-500',
-                description: 'Our flagship fruit drink brand loved by families across Uganda. Refreshing and delicious.',
-                features: ['Premium Fruit Drinks', 'Trusted Brand', 'Multiple Flavors']
-              },
-              { 
-                name: 'Britania Quality Biscuits', 
-                image: '/IMG_4045.jpg', 
-                href: '/products#biscuits', 
-                tag: 'Since 1991',
-                color: 'bg-gradient-to-br from-amber-500 to-orange-600',
-                description: 'Crispy, golden, and perfectly baked. Our signature biscuits and confectioneries made with care.',
-                features: ['Quality Ingredients', 'Crispy Texture', 'Family Favorite']
-              },
-              { 
-                name: 'Premium Beverage Range', 
-                image: '/Picture1.png', 
-                href: '/products#beverages', 
-                tag: 'Complete Range',
-                color: 'bg-gradient-to-br from-blue-500 to-cyan-500',
-                description: 'Including Yojus, SunSip, TopUp and more. Complete beverage solutions for every occasion.',
-                features: ['Multiple Brands', 'Quality Assured', 'Wide Distribution']
-              },
-            ].map((product, idx) => (
-              <div key={product.name} className="group">
-                <div className="relative overflow-hidden rounded-3xl shadow-2xl group-hover:shadow-3xl transition-all duration-700 bg-white border border-gray-100">
-                  {/* Image Container with proper aspect ratio and cover behavior */}
-                  <div className="relative w-full h-56 overflow-hidden bg-gray-100">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
-                      style={{ objectFit: 'cover' }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                  </div>
-                  
-                  {/* Tag */}
-                  <div className="absolute top-6 left-6">
-                    <span className={`${product.color} text-white text-sm font-bold px-4 py-2 rounded-full shadow-lg backdrop-blur-sm`}>
-                      {product.tag}
-                    </span>
-                  </div>
-                  
-                  {/* Content */}
-                  <div className="p-5">
-                    <h3 className="text-xl font-bold text-heading-gray mb-2 group-hover:text-brand-red transition-colors duration-300">
-                      {product.name}
-                    </h3>
-                    <p className="text-text-gray mb-3 leading-relaxed text-base">
-                      {product.description}
-                    </p>
-                    
-                    {/* Features */}
-                    <div className="space-y-2 mb-4">
-                      {product.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center text-text-gray">
-                          <div className="w-5 h-5 rounded-full bg-brand-red/10 flex items-center justify-center mr-3">
-                            <Star className="h-3 w-3 text-brand-red" />
-                          </div>
-                          <span className="text-sm font-medium">{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-                    
-                    {/* CTA Button */}
-                    <a
-                      href={product.href}
-                      className="group/btn relative overflow-hidden w-full px-6 py-2 bg-brand-red text-white font-bold text-base rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center"
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-800 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
-                      <div className="relative flex items-center">
-                        <span>Explore Range</span>
-                        <svg className="ml-3 w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
+          {/* Product Carousel */}
+          <div className="relative">
+            <button 
+              onClick={() => scrollToProduct('left')}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-brand-red hover:bg-red-700 text-white p-3 rounded-full shadow-lg transform hover:scale-110 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={currentProductIndex === 0}
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            
+            <button 
+              onClick={() => scrollToProduct('right')}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-brand-red hover:bg-red-700 text-white p-3 rounded-full shadow-lg transform hover:scale-110 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={currentProductIndex >= products.length - 2}
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+
+            <div 
+              ref={scrollContainerRef}
+              className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth px-12"
+              style={{ scrollbarWidth: 'none' }}
+            >
+              {products.map((product, index) => (
+                <div 
+                  key={product.id} 
+                  className="flex-shrink-0 w-80 bg-white border-gray-200 rounded-2xl shadow-lg hover:border-brand-red/50 transition-all duration-500 group cursor-pointer transform hover:scale-105 hover:shadow-xl"
+                >
+                  <div className="p-0">
+                    <div className="relative overflow-hidden rounded-t-lg bg-gray-100">
+                      <img 
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-56 object-contain group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute top-3 right-3 bg-brand-red text-white text-xs font-bold px-3 py-1 rounded-full animate-pulse">
+                        {product.discount}
                       </div>
-                    </a>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <div className="p-4 space-y-2">
+                      <p className="text-sm text-gray-500 uppercase tracking-wide">{product.category}</p>
+                      <h3 className="text-xl font-semibold text-heading-gray group-hover:text-brand-red transition-colors duration-300">
+                        {product.name}
+                      </h3>
+                      <p className="text-text-gray text-sm">{product.description}</p>
+                      <div className="flex items-center justify-end pt-2">
+                        <a href={product.href} className="bg-brand-red text-white px-4 py-2 rounded-lg hover:bg-red-700 transform hover:scale-105 transition-all duration-300 text-sm font-semibold">
+                          View Details
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            <div className="flex justify-center mt-8 space-x-2">
+              {Array.from({ length: Math.ceil(products.length / 2) }).map((_, index) => (
+                <button
+                  key={index}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    Math.floor(currentProductIndex / 2) === index 
+                      ? 'bg-brand-red scale-125' 
+                      : 'bg-gray-300 hover:bg-gray-400'
+                  }`}
+                  onClick={() => {
+                    if (scrollContainerRef.current) {
+                      const cardWidth = 320 + 24;
+                      scrollContainerRef.current.scrollTo({
+                        left: index * cardWidth * 2,
+                        behavior: 'smooth'
+                      });
+                    }
+                  }}
+                />
+              ))}
+            </div>
           </div>
 
           {/* Bottom CTA */}
@@ -263,121 +393,24 @@ const Home = () => {
             <div className="inline-block">
               <a
                 href="/products"
-                className="group relative overflow-hidden px-10 py-3 bg-gradient-to-r from-brand-red to-red-700 text-white font-bold text-lg rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300"
+                className="group relative overflow-hidden px-10 py-3 bg-gradient-to-r from-brand-red to-red-700 text-black font-bold text-lg rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-red-800 to-red-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative flex items-center">
                   <span>View Complete Product Range</span>
-                  <svg className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                  <svg 
+                    className="ml-3 w-5 h-5 group-hover:translate-x-1 group-hover:scale-110 transition-all duration-300 ease-out" 
+                    fill="currentColor" 
+                    viewBox="0 0 20 20"
+                    aria-hidden="true"
+                  >
+                    <path 
+                      fillRule="evenodd" 
+                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" 
+                      clipRule="evenodd"
+                    />
                   </svg>
                 </div>
               </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Brand Story Section - Modern Heritage Design */}
-      <section
-        id="story"
-        ref={brandStoryRef}
-        className={`relative overflow-hidden py-12 bg-gradient-to-br from-slate-900 via-brand-red to-red-900 transform transition-all duration-1000 ease-out ${brandStoryVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-      >
-        {/* Background Pattern */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-warm-beige/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
-        </div>
-        
-        {/* Background Image */}
-        <div className="absolute inset-0 opacity-20">
-          <img
-            src="/IMG_4045.jpg"
-            alt="Britania heritage"
-            className="w-full h-full object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-red/80 via-transparent to-brand-red/60"></div>
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-          {/* Section Header */}
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-4">
-              <Clock className="h-5 w-5 text-warm-beige mr-2" />
-              <span className="text-warm-beige text-sm font-semibold">EST. 1991 • 30+ YEARS OF EXCELLENCE</span>
-            </div>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-4 leading-tight">
-              A Legacy of
-              <span className="block bg-gradient-to-r from-warm-beige to-yellow-200 bg-clip-text text-transparent">
-                Trust & Excellence
-              </span>
-            </h2>
-            <div className="w-32 h-1 bg-gradient-to-r from-warm-beige to-yellow-200 mx-auto"></div>
-          </div>
-          
-          {/* Content Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            {/* Story Content */}
-            <div className="space-y-4">
-              <div className="group bg-white/10 backdrop-blur-md rounded-3xl p-5 border border-white/20 hover:bg-white/15 transition-all duration-300">
-                <div className="flex items-center mb-3">
-                  <div className="w-10 h-10 bg-warm-beige rounded-2xl flex items-center justify-center mr-3">
-                    <Award className="h-5 w-5 text-brand-red" />
-                  </div>
-                  <h3 className="text-xl font-bold text-warm-beige">Our Journey</h3>
-                </div>
-                <p className="text-white text-base leading-relaxed">
-                  Since 1991, Britania Allied Industries Limited has been a proud member of the House of Dawda Group, manufacturing quality biscuits, fruit drinks, and confectioneries. Part of a respected conglomerate with roots dating back to 1962, founded by Hasmukh Dawda.
-                </p>
-              </div>
-              
-              <div className="group bg-white/10 backdrop-blur-md rounded-3xl p-5 border border-white/20 hover:bg-white/15 transition-all duration-300">
-                <div className="flex items-center mb-3">
-                  <div className="w-10 h-10 bg-warm-beige rounded-2xl flex items-center justify-center mr-3">
-                    <Heart className="h-5 w-5 text-brand-red" />
-                  </div>
-                  <h3 className="text-xl font-bold text-warm-beige">Our Promise</h3>
-                </div>
-                <p className="text-white text-base leading-relaxed">
-                  Every product that bears the Britania name represents our unwavering commitment to quality manufacturing, from our headquarters in Kampala's Ntinda Industrial Area to families across Uganda.
-                </p>
-              </div>
-              
-              <div className="pt-2">
-                <a
-                  href="/about"
-                  className="group relative overflow-hidden inline-flex items-center px-6 py-3 bg-white text-brand-red font-bold text-base rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-warm-beige to-yellow-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="relative flex items-center">
-                    <span>Read Our Complete Story</span>
-                    <svg className="ml-3 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                </a>
-              </div>
-            </div>
-            
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                { icon: Award, number: "1962", label: "Group Founded", color: "from-yellow-400 to-orange-500" },
-                { icon: Users, number: "7K+", label: "Group Employees", color: "from-green-400 to-blue-500" },
-                { icon: MapPin, number: "Uganda", label: "Headquarters", color: "from-purple-400 to-pink-500" },
-                { icon: Clock, number: "30+", label: "Years Experience", color: "from-blue-400 to-cyan-500" }
-              ].map((stat, idx) => (
-                <div key={idx} className="group text-center bg-white/10 backdrop-blur-md rounded-3xl p-4 border border-white/20 hover:bg-white/15 hover:scale-105 transition-all duration-300">
-                  <div className={`w-12 h-12 mx-auto mb-3 bg-gradient-to-br ${stat.color} rounded-2xl flex items-center justify-center shadow-lg`}>
-                    <stat.icon className="h-6 w-6 text-white" />
-                  </div>
-                  <h4 className="text-2xl font-black text-white mb-1 group-hover:text-warm-beige transition-colors duration-300">
-                    {stat.number}
-                  </h4>
-                  <p className="text-warm-beige font-medium text-xs">{stat.label}</p>
-                </div>
-              ))}
             </div>
           </div>
         </div>
@@ -581,99 +614,52 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Final CTA Section - Modern Design */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-brand-red via-red-800 to-red-900 py-12">
-        {/* Background Pattern */}
-        <div className="absolute inset-0">
-          <div className="absolute top-10 right-10 w-80 h-80 bg-warm-beige/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-10 left-10 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-red-300/10 rounded-full blur-2xl animate-pulse delay-500"></div>
-        </div>
-        
-        {/* Background Image */}
-        <div className="absolute inset-0 opacity-10">
-          <img
-            src="/Picture1.png"
-            alt="Britania products"
-            className="w-full h-full object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-brand-red/60 to-transparent"></div>
-        </div>
-
-        <div className="relative max-w-6xl mx-auto text-center px-6 sm:px-8 lg:px-12">
-          {/* Badge */}
-          <div className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-4">
-            <Heart className="h-5 w-5 text-warm-beige mr-2" />
-            <span className="text-warm-beige text-sm font-semibold">JOIN THE BRITANIA FAMILY</span>
-          </div>
-          
-          {/* Main Heading */}
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-4 leading-tight">
-            Ready to Taste
-            <span className="block bg-gradient-to-r from-warm-beige to-yellow-200 bg-clip-text text-transparent">
-              the Difference?
-            </span>
-          </h2>
-          
-          {/* Subtitle */}
-          <p className="text-lg sm:text-xl lg:text-2xl text-red-100 max-w-4xl mx-auto mb-6 leading-relaxed font-light">
-            Join thousands of satisfied customers who choose 
-            <span className="text-warm-beige font-semibold"> Britania for quality and taste across Uganda</span>
-          </p>
-          
-          {/* Stats Bar */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-8">
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-warm-beige mb-1">7K+</div>
-              <div className="text-xs text-red-200">Group Employees</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-warm-beige mb-1">$380M</div>
-              <div className="text-xs text-red-200">Group Revenue</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-warm-beige mb-1">30+</div>
-              <div className="text-xs text-red-200">Years</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-warm-beige mb-1">1991</div>
-              <div className="text-xs text-red-200">Est. Date</div>
-            </div>
-          </div>
-          
-          {/* CTA Buttons */}
-          <div className="flex flex-col lg:flex-row gap-4 justify-center items-center mb-8">
-            <a
-              href="/products"
-              className="group relative overflow-hidden px-8 py-4 bg-white text-brand-red font-bold text-lg rounded-3xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 min-w-[200px]"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-warm-beige to-yellow-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="relative flex items-center justify-center">
-                <span>Shop Our Products</span>
-                <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-              </div>
-            </a>
-            
-            <a
-              href="/about"
-              className="group px-8 py-4 border-2 border-white text-white font-bold text-lg rounded-3xl hover:bg-white hover:text-brand-red transform hover:scale-105 transition-all duration-300 min-w-[200px] text-center"
-            >
-              <div className="flex items-center justify-center">
-                <Award className="mr-2 w-5 h-5" />
-                <span>Learn More About Us</span>
-              </div>
-            </a>
-          </div>
-          
-          {/* Additional Info */}
-          <div className="pt-4 border-t border-white/20">
-            <p className="text-red-200 text-base">
-              🏭 <span className="text-warm-beige font-semibold">Manufactured in Uganda</span> | 
-              🏆 <span className="text-warm-beige font-semibold">30+ years</span> of experience | 
-              🌟 <span className="text-warm-beige font-semibold">Trusted brands</span> like Splash, Yojus, SunSip & TopUp
+      {/* Social Media Section */}
+      <section ref={socialsRef} className={`py-20 bg-warm-beige/20 text-text-gray transform transition-all duration-1000 ease-out ${socialsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-heading-gray">
+              GET <span className="text-brand-red">SOCIAL</span>
+            </h2>
+            <p className="text-xl text-gray-600">
+              Follow us for the latest updates, behind-the-scenes content, and product launches
             </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            {[...Array(8)].map((_, index) => (
+              <div 
+                key={index} 
+                className="relative group cursor-pointer"
+              >
+                <img 
+                  src={nativeImages[index % nativeImages.length]}
+                  alt={`Social post ${index + 1}`}
+                  className="w-full h-48 object-contain rounded-lg transform hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
+                  <Instagram className="w-8 h-8 text-white animate-bounce" />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <p className="text-lg mb-6">Let's take it to the next level. Follow us for daily updates.</p>
+            <div className="flex justify-center space-x-6">
+              <a href="#" className="w-12 h-12 bg-brand-red rounded-full flex items-center justify-center hover:bg-red-700 transition-all duration-300 cursor-pointer transform hover:scale-110 hover:rotate-12">
+                <Facebook className="w-6 h-6 text-white" />
+              </a>
+              <a href="#" className="w-12 h-12 bg-brand-red rounded-full flex items-center justify-center hover:bg-red-700 transition-all duration-300 cursor-pointer transform hover:scale-110 hover:rotate-12">
+                <Instagram className="w-6 h-6 text-white" />
+              </a>
+              <a href="#" className="w-12 h-12 bg-brand-red rounded-full flex items-center justify-center hover:bg-red-700 transition-all duration-300 cursor-pointer transform hover:scale-110 hover:rotate-12">
+                <Twitter className="w-6 h-6 text-white" />
+              </a>
+              <a href="#" className="w-12 h-12 bg-brand-red rounded-full flex items-center justify-center hover:bg-red-700 transition-all duration-300 cursor-pointer transform hover:scale-110 hover:rotate-12">
+                <Youtube className="w-6 h-6 text-white" />
+              </a>
+            </div>
           </div>
         </div>
       </section>
