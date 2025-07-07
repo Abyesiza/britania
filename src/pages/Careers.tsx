@@ -10,7 +10,7 @@ const Careers = () => {
           <img 
             src="/Picture1.png" 
             alt="Careers at Britania" 
-            className="w-full h-full object-cover object-center opacity-70"
+            className="w-full h-full object-contain object-center opacity-70"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-brand-red/60 to-red-900/60"></div>
         </div>
@@ -62,9 +62,9 @@ const Careers = () => {
           </div>
           <div>
             <img
-              src="/IMG_4045.jpg"
+              src="/Picture2.png"
               alt="Britania team"
-              className="rounded-lg shadow-md w-full h-auto object-cover"
+              className="rounded-lg shadow-md w-full h-auto object-contain"
             />
           </div>
         </div>

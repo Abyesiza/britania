@@ -122,6 +122,49 @@ const Home = () => {
     '/Britania Logo.png',
   ];
 
+  const socialPosts = [
+    {
+      platform: 'Instagram',
+      icon: Instagram,
+      handle: '@BritaniaUg',
+      image: '/Picture1.png',
+      caption: 'That refreshing feeling on a sunny day! ☀️ Our Yojus Apple is the perfect companion. #BritaniaYojus #TasteOfUganda',
+      likes: '1.2k',
+      comments: '48',
+      span: 'md:col-span-2 md:row-span-2',
+    },
+    {
+      platform: 'Facebook',
+      icon: Facebook,
+      handle: 'Britania Uganda',
+      image: '/Picture2.png',
+      caption: 'Family gatherings are better with Splash Kachupa. What are your favorite family moments? ❤️',
+      likes: '876',
+      comments: '112',
+      span: '',
+    },
+    {
+      platform: 'Twitter',
+      icon: Twitter,
+      handle: '@Britania_UG',
+      image: '/Picture3.png',
+      caption: 'Hydration is key! Our Refresh Water is purified to perfection. 💧 #StayHydrated',
+      likes: '340',
+      comments: '22',
+      span: '',
+    },
+    {
+      platform: 'Instagram',
+      icon: Instagram,
+      handle: '@BritaniaUg',
+      image: '/Britania Logo.png',
+      caption: 'Quality you can trust, from our family to yours. #BritaniaQuality',
+      likes: '2.5k',
+      comments: '150',
+      span: 'md:col-span-2',
+    },
+  ];
+
   const products: Product[] = [
     {
       id: 1,
@@ -211,7 +254,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="bg-navy-blue text-white">
+    <div className="bg-denim text-white">
       {/* Hero Section - Modern Design */}
       <div className="relative overflow-hidden bg-gradient-to-br from-brand-red via-blue-800 to-blue-900 min-h-[80vh] flex items-center">
         {/* Animated Background Elements */}
@@ -416,97 +459,72 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Engaging Content Section - Modern Services */}
+      {/* Social Media Section v2 - Enhanced */}
       <section
-        ref={engagingContentRef}
-        className={`py-12 bg-gradient-to-br from-gray-50 via-warm-beige/30 to-white overflow-hidden transform transition-all duration-1000 ease-out ${engagingContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        ref={socialsRef}
+        className={`py-24 bg-gradient-to-br from-denim via-blue-900 to-[#111827] text-white transform transition-all duration-1000 ease-out ${socialsVisible ? 'opacity-100' : 'opacity-0'}`}
       >
-        {/* Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-20 right-20 w-64 h-64 bg-brand-red/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 left-20 w-80 h-80 bg-warm-beige/20 rounded-full blur-3xl"></div>
-        </div>
-        
-        <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-          {/* Section Header */}
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center px-6 py-3 bg-brand-red/10 backdrop-blur-sm rounded-full border border-brand-red/20 mb-4">
-              <Star className="h-5 w-5 text-brand-red mr-2" />
-              <span className="text-brand-red text-sm font-semibold">DISCOVER MORE WITH BRITANIA</span>
-            </div>
-            <h2 className="text-4xl sm:text-5xl font-black text-heading-gray mb-4">
-              More Than Just
-              <span className="block text-brand-red">Products</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-black mb-4">
+              Join The <span className="text-brand-red">Britania</span> Community
             </h2>
-            <p className="text-lg sm:text-xl text-text-gray max-w-3xl mx-auto leading-relaxed">
-              Discover creative ways to enjoy our products and make every moment special with 
-              <span className="text-brand-red font-semibold"> Britania</span>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Get a taste of our latest news, delicious recipes, and behind-the-scenes moments. Follow our journey!
             </p>
           </div>
-          
-          {/* Services Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                icon: Gift,
-                title: "Special Promotions",
-                description: "Discover our latest offers and bundle deals. Save more when you buy your favorite products together.",
-                href: "/promotions",
-                color: "from-pink-500 to-rose-500",
-                bgColor: "bg-gradient-to-br from-pink-50 to-rose-50"
-              },
-              {
-                icon: Heart,
-                title: "Recipe Ideas",
-                description: "Get creative with our products! Discover delicious recipes and serving suggestions for every occasion.",
-                href: "#",
-                color: "from-red-500 to-pink-500",
-                bgColor: "bg-gradient-to-br from-red-50 to-pink-50"
-              },
-              {
-                icon: Briefcase,
-                title: "Join Our Team",
-                description: "Be part of a dynamic team that's shaping the future of food and beverages in Uganda.",
-                href: "/careers",
-                color: "from-brand-red to-red-600",
-                bgColor: "bg-gradient-to-br from-red-50 to-orange-50"
-              }
-            ].map((service, idx) => (
-              <div key={idx} className="group">
-                <div className={`relative overflow-hidden ${service.bgColor} rounded-3xl p-5 border border-gray-100 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105`}>
-                  {/* Icon */}
-                  <div className="relative mb-4">
-                    <div className={`w-14 h-14 bg-gradient-to-br ${service.color} rounded-3xl flex items-center justify-center shadow-lg mx-auto group-hover:scale-110 transition-transform duration-300`}>
-                      <service.icon className="h-7 w-7 text-white" />
-                    </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 auto-rows-[250px] mb-16">
+            {socialPosts.map((post, index) => (
+              <div
+                key={index}
+                className={`relative group cursor-pointer overflow-hidden rounded-2xl shadow-lg transform hover:scale-105 transition-transform duration-300 ${post.span}`}
+              >
+                <img
+                  src={post.image}
+                  alt={`Social post from ${post.platform}`}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                <div className="absolute inset-0 p-4 flex flex-col justify-end">
+                  <div className="flex items-center mb-2">
+                    <post.icon className="w-5 h-5 text-white mr-2" />
+                    <span className="font-bold text-sm">{post.handle}</span>
                   </div>
-                  
-                  {/* Content */}
-                  <div className="text-center">
-                    <h3 className="text-xl font-bold text-heading-gray mb-3 group-hover:text-brand-red transition-colors duration-300">
-                      {service.title}
-                    </h3>
-                    <p className="text-text-gray mb-4 leading-relaxed text-sm">
-                      {service.description}
-                    </p>
-                    
-                    {/* CTA Button */}
-                    <a 
-                      href={service.href} 
-                      className={`group/btn relative overflow-hidden inline-flex items-center px-5 py-2 bg-gradient-to-r ${service.color} text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105`}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
-                      <div className="relative flex items-center">
-                        <span className="text-sm">{service.title === "Special Promotions" ? "View Offers" : service.title === "Recipe Ideas" ? "Explore Recipes" : "View Careers"}</span>
-                        <svg className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                    </a>
+                  <p className="text-sm text-gray-200 mb-3 leading-snug">{post.caption}</p>
+                  <div className="flex space-x-4 text-xs font-medium text-gray-300">
+                    <span>{post.likes} Likes</span>
+                    <span>{post.comments} Comments</span>
                   </div>
+                </div>
+                <div className="absolute top-3 right-3 bg-white/20 backdrop-blur-sm p-1.5 rounded-full">
+                   <post.icon className="w-5 h-5 text-white" />
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="text-center">
+            <p className="text-2xl font-bold mb-2">Ready to connect?</p>
+            <p className="text-lg text-gray-400 mb-8">Follow us on your favorite platform!</p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a href="#" className="group flex items-center justify-center gap-3 px-6 py-3 bg-white/10 border border-white/20 rounded-xl hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+                <Facebook className="w-6 h-6 text-blue-500" />
+                <span className="font-bold">Facebook</span>
+              </a>
+              <a href="#" className="group flex items-center justify-center gap-3 px-6 py-3 bg-white/10 border border-white/20 rounded-xl hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+                <Instagram className="w-6 h-6 text-pink-500" />
+                <span className="font-bold">Instagram</span>
+              </a>
+              <a href="#" className="group flex items-center justify-center gap-3 px-6 py-3 bg-white/10 border border-white/20 rounded-xl hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+                <Twitter className="w-6 h-6 text-sky-400" />
+                <span className="font-bold">Twitter</span>
+              </a>
+              <a href="#" className="group flex items-center justify-center gap-3 px-6 py-3 bg-white/10 border border-white/20 rounded-xl hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+                <Youtube className="w-6 h-6 text-red-600" />
+                <span className="font-bold">YouTube</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -614,52 +632,97 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Social Media Section */}
-      <section ref={socialsRef} className={`py-20 bg-warm-beige/20 text-text-gray transform transition-all duration-1000 ease-out ${socialsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-heading-gray">
-              GET <span className="text-brand-red">SOCIAL</span>
+      {/* Engaging Content Section - Modern Services */}
+      <section
+        ref={engagingContentRef}
+        className={`py-12 bg-gradient-to-br from-gray-50 via-warm-beige/30 to-white overflow-hidden transform transition-all duration-1000 ease-out ${engagingContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+      >
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 right-20 w-64 h-64 bg-brand-red/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 left-20 w-80 h-80 bg-warm-beige/20 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          {/* Section Header */}
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center px-6 py-3 bg-brand-red/10 backdrop-blur-sm rounded-full border border-brand-red/20 mb-4">
+              <Star className="h-5 w-5 text-brand-red mr-2" />
+              <span className="text-brand-red text-sm font-semibold">DISCOVER MORE WITH BRITANIA</span>
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-black text-heading-gray mb-4">
+              More Than Just
+              <span className="block text-brand-red">Products</span>
             </h2>
-            <p className="text-xl text-gray-600">
-              Follow us for the latest updates, behind-the-scenes content, and product launches
+            <p className="text-lg sm:text-xl text-text-gray max-w-3xl mx-auto leading-relaxed">
+              Discover creative ways to enjoy our products and make every moment special with 
+              <span className="text-brand-red font-semibold"> Britania</span>
             </p>
           </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-            {[...Array(8)].map((_, index) => (
-              <div 
-                key={index} 
-                className="relative group cursor-pointer"
-              >
-                <img 
-                  src={nativeImages[index % nativeImages.length]}
-                  alt={`Social post ${index + 1}`}
-                  className="w-full h-48 object-contain rounded-lg transform hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
-                  <Instagram className="w-8 h-8 text-white animate-bounce" />
+          
+          {/* Services Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: Gift,
+                title: "Special Promotions",
+                description: "Discover our latest offers and bundle deals. Save more when you buy your favorite products together.",
+                href: "/promotions",
+                color: "from-pink-500 to-rose-500",
+                bgColor: "bg-gradient-to-br from-pink-50 to-rose-50"
+              },
+              {
+                icon: Heart,
+                title: "Recipe Ideas",
+                description: "Get creative with our products! Discover delicious recipes and serving suggestions for every occasion.",
+                href: "#",
+                color: "from-red-500 to-pink-500",
+                bgColor: "bg-gradient-to-br from-red-50 to-pink-50"
+              },
+              {
+                icon: Briefcase,
+                title: "Join Our Team",
+                description: "Be part of a dynamic team that's shaping the future of food and beverages in Uganda.",
+                href: "/careers",
+                color: "from-brand-red to-red-600",
+                bgColor: "bg-gradient-to-br from-red-50 to-orange-50"
+              }
+            ].map((service, idx) => (
+              <div key={idx} className="group">
+                <div className={`relative overflow-hidden ${service.bgColor} rounded-3xl p-5 border border-gray-100 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105`}>
+                  {/* Icon */}
+                  <div className="relative mb-4">
+                    <div className={`w-14 h-14 bg-gradient-to-br ${service.color} rounded-3xl flex items-center justify-center shadow-lg mx-auto group-hover:scale-110 transition-transform duration-300`}>
+                      <service.icon className="h-7 w-7 text-white" />
+                    </div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="text-center">
+                    <h3 className="text-xl font-bold text-heading-gray mb-3 group-hover:text-brand-red transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    <p className="text-text-gray mb-4 leading-relaxed text-sm">
+                      {service.description}
+                    </p>
+                    
+                    {/* CTA Button */}
+                    <a 
+                      href={service.href} 
+                      className={`group/btn relative overflow-hidden inline-flex items-center px-5 py-2 bg-gradient-to-r ${service.color} text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105`}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                      <div className="relative flex items-center">
+                        <span className="text-sm">{service.title === "Special Promotions" ? "View Offers" : service.title === "Recipe Ideas" ? "Explore Recipes" : "View Careers"}</span>
+                        <svg className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}
-          </div>
-
-          <div className="text-center">
-            <p className="text-lg mb-6">Let's take it to the next level. Follow us for daily updates.</p>
-            <div className="flex justify-center space-x-6">
-              <a href="#" className="w-12 h-12 bg-brand-red rounded-full flex items-center justify-center hover:bg-red-700 transition-all duration-300 cursor-pointer transform hover:scale-110 hover:rotate-12">
-                <Facebook className="w-6 h-6 text-white" />
-              </a>
-              <a href="#" className="w-12 h-12 bg-brand-red rounded-full flex items-center justify-center hover:bg-red-700 transition-all duration-300 cursor-pointer transform hover:scale-110 hover:rotate-12">
-                <Instagram className="w-6 h-6 text-white" />
-              </a>
-              <a href="#" className="w-12 h-12 bg-brand-red rounded-full flex items-center justify-center hover:bg-red-700 transition-all duration-300 cursor-pointer transform hover:scale-110 hover:rotate-12">
-                <Twitter className="w-6 h-6 text-white" />
-              </a>
-              <a href="#" className="w-12 h-12 bg-brand-red rounded-full flex items-center justify-center hover:bg-red-700 transition-all duration-300 cursor-pointer transform hover:scale-110 hover:rotate-12">
-                <Youtube className="w-6 h-6 text-white" />
-              </a>
-            </div>
           </div>
         </div>
       </section>

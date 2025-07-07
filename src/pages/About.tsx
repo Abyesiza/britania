@@ -10,7 +10,7 @@ const About = () => {
           <img 
             src="/Picture1.png" 
             alt="About Britania Allied" 
-            className="w-full h-full object-cover object-center opacity-70"
+            className="w-full h-full object-contain object-center opacity-70"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-brand-red/60 to-red-900/60"></div>
         </div>
@@ -44,7 +44,7 @@ const About = () => {
             <img
               src="/Picture1.png"
               alt="Britania products"
-              className="rounded-lg shadow-md w-full h-auto object-cover"
+              className="rounded-lg shadow-md w-full h-auto object-contain"
             />
           </div>
           <div className="flex flex-col justify-center">
@@ -67,19 +67,19 @@ const About = () => {
           <h2 className="text-2xl font-semibold text-heading-gray mb-6 text-center">Our Brands</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { name: 'SPLASH', category: 'Beverages', image: '/WhatsApp Image 2023-07-27 at 5.32.43 PM.jpeg.jpg' },
-              { name: 'YOJUS', category: 'Juices', image: '/IMG_4045.jpg' },
+              { name: 'SPLASH', category: 'Beverages', image: '/Picture2.png' },
+              { name: 'YOJUS', category: 'Juices', image: '/Picture1.png' },
               { name: 'Sun-Sip', category: 'Natural Fruit Juices', image: '/Picture1.png' },
-              { name: 'Refresh', category: 'Drinking Water', image: '/Picture1.png' },
-              { name: 'Top Up', category: 'Tomato Sauce', image: '/IMG_4045.jpg' },
-              { name: 'Britania Biscuits', category: 'Biscuits', image: '/WhatsApp Image 2023-07-27 at 5.32.43 PM.jpeg.jpg' }
+              { name: 'Refresh', category: 'Drinking Water', image: '/Picture3.png' },
+              { name: 'Top Up', category: 'Tomato Sauce', image: '/Picture2.png' },
+              { name: 'Britania Biscuits', category: 'Biscuits', image: '/Britania Logo.png' }
             ].map((brand) => (
               <div key={brand.name} className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105 duration-300">
                 <div className="h-48 overflow-hidden">
                   <img
                     src={brand.image}
                     alt={brand.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                 </div>
                 <div className="p-6">

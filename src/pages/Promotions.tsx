@@ -8,9 +8,9 @@ const Promotions = () => {
       <div className="relative overflow-hidden bg-gradient-to-br from-brand-red to-red-900 py-20 min-h-[500px] flex items-center">
         <div className="absolute inset-0">  
           <img 
-            src="/IMG_4045.jpg" 
+            src="/Picture1.png" 
             alt="Promotions at Britania" 
-            className="w-full h-full object-cover object-center opacity-70"
+            className="w-full h-full object-contain object-center opacity-70"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-brand-red/60 to-red-900/60"></div>
         </div>
@@ -42,14 +42,14 @@ const Promotions = () => {
               {
                 title: 'Summer Special',
                 description: 'Get 20% off on all refreshing SPLASH drinks. Perfect for the hot summer days!',
-                image: '/WhatsApp Image 2023-07-27 at 5.32.43 PM.jpeg.jpg',
+                image: '/Picture2.png',
                 validUntil: 'August 31, 2024',
                 badge: 'Best Seller'
               },
               {
                 title: 'Family Pack Deal',
                 description: 'Buy any 3 Britania biscuit packs and get 1 free. Great value for the whole family!',
-                image: '/IMG_4045.jpg',
+                image: '/Picture3.png',
                 validUntil: 'July 15, 2024',
                 badge: 'Limited Time'
               },
@@ -66,7 +66,7 @@ const Promotions = () => {
                   <img
                     src={promo.image}
                     alt={promo.title}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-48 object-contain"
                   />
                   <div className="absolute top-0 right-0 bg-brand-red text-white px-3 py-1 rounded-bl-lg">
                     {promo.badge}
@@ -95,9 +95,9 @@ const Promotions = () => {
           <div className="md:flex">
             <div className="md:w-1/2">
               <img
-                src="/WhatsApp Image 2023-07-27 at 5.32.43 PM.jpeg.jpg"
+                src="/Picture1.png"
                 alt="SPLASH juice promotion"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
             </div>
             <div className="p-8 md:w-1/2 flex flex-col justify-center">
@@ -156,14 +156,14 @@ const Promotions = () => {
                 date: 'August 5, 2024',
                 location: 'Main Street Mall, Jinja',
                 description: 'Learn about healthy living and discover our range of nutritious products. Special demonstrations and giveaways throughout the day.',
-                image: '/IMG_4045.jpg'
+                image: '/Picture2.png'
               },
               {
                 title: 'Entebbe Community Wellness Day',
                 date: 'September 10, 2024',
                 location: 'Entebbe Botanical Gardens',
                 description: 'A day focused on community health and wellness. Free product samples and health consultations available.',
-                image: '/WhatsApp Image 2023-07-27 at 5.32.43 PM.jpeg.jpg'
+                image: '/Picture3.png'
               }
             ].map((event) => (
               <div key={event.title} className="bg-white rounded-lg shadow-md overflow-hidden border border-light-gray">
@@ -172,7 +172,7 @@ const Promotions = () => {
                     <img
                       src={event.image}
                       alt={event.title}
-                      className="w-full h-full object-cover md:h-48 lg:h-full"
+                      className="w-full h-full object-contain md:h-48 lg:h-full"
                     />
                   </div>
                   <div className="p-6 md:w-2/3">
@@ -219,20 +219,20 @@ const Promotions = () => {
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {[
-              { src: '/IMG_4045.jpg', alt: 'Product launch event' },
-              { src: '/WhatsApp Image 2023-07-27 at 5.32.43 PM.jpeg.jpg', alt: 'School outreach program' },
-              { src: '/Picture1.png', alt: 'Community tasting event' },
-              { src: '/IMG_4045.jpg', alt: 'Trade fair booth' },
-              { src: '/WhatsApp Image 2023-07-27 at 5.32.43 PM.jpeg.jpg', alt: 'Rural market promotion' },
-              { src: '/Picture1.png', alt: 'University campus event' },
-              { src: '/IMG_4045.jpg', alt: 'Product sampling' },
-              { src: '/WhatsApp Image 2023-07-27 at 5.32.43 PM.jpeg.jpg', alt: 'Charity donation event' }
+              { src: '/Picture1.png', alt: 'Product launch event' },
+              { src: '/Picture2.png', alt: 'School outreach program' },
+              { src: '/Picture3.png', alt: 'Community tasting event' },
+              { src: '/Britania Logo.png', alt: 'Trade fair booth' },
+              { src: '/Picture1.png', alt: 'Rural market promotion' },
+              { src: '/Picture2.png', alt: 'University campus event' },
+              { src: '/Picture3.png', alt: 'Product sampling' },
+              { src: '/Britania Logo.png', alt: 'Charity donation event' }
             ].map((image, index) => (
               <div key={index} className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg shadow-md transition-transform hover:scale-105 duration-300">
                 <img
                   src={image.src}
                   alt={image.alt}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               </div>
             ))}

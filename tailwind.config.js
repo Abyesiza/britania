@@ -12,7 +12,7 @@ export default {
         'steel-blue': 'var(--steel-blue)',
         'warm-beige': 'var(--warm-beige)',
         'earthy-brown': 'var(--earthy-brown)',
-        'navy-blue': '#000080',
+        'denim': '#151E3D',
       },
       fontFamily: {
         'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],

@@ -10,7 +10,7 @@ const Products = () => {
           <img 
             src="/Picture1.png" 
             alt="Products at Britania" 
-            className="w-full h-full object-cover object-center opacity-70"
+            className="w-full h-full object-contain object-center opacity-70"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-brand-red/60 to-red-900/60"></div>
         </div>
@@ -60,9 +60,9 @@ const Products = () => {
               <div key={idx} className="bg-white border border-light-gray rounded-lg shadow-md overflow-hidden transition-transform hover:shadow-lg hover:scale-105 duration-300">
                 <div className="h-48 relative">
                   <img
-                    src="/IMG_4045.jpg"
+                    src="/Picture3.png"
                     alt={product.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                   <div className="absolute top-0 right-0 bg-brand-red text-white px-3 py-1 rounded-bl-lg">
                     {product.price}
@@ -121,9 +121,9 @@ const Products = () => {
               <div key={idx} className="bg-white border border-light-gray rounded-lg shadow-md overflow-hidden transition-transform hover:shadow-lg hover:scale-105 duration-300">
                 <div className="h-48 relative">
                   <img
-                    src="/WhatsApp Image 2023-07-27 at 5.32.43 PM.jpeg.jpg"
+                    src="/Picture1.png"
                     alt={product.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                   <div className="absolute top-0 right-0 bg-brand-red text-white px-3 py-1 rounded-bl-lg">
                     {product.price}
@@ -182,9 +182,9 @@ const Products = () => {
               <div key={idx} className="bg-white border border-light-gray rounded-lg shadow-md overflow-hidden transition-transform hover:shadow-lg hover:scale-105 duration-300">
                 <div className="h-48 relative">
                   <img
-                    src="/Picture1.png"
+                    src="/Picture2.png"
                     alt={product.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                   <div className="absolute top-0 right-0 bg-brand-red text-white px-3 py-1 rounded-bl-lg">
                     {product.price}
