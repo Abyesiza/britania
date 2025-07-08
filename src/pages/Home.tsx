@@ -47,21 +47,13 @@ const HeroProductCarousel = ({ products }: { products: Product[] }) => {
         return () => clearTimeout(timer);
     }, [currentSlide, products.length]);
 
-    const nextSlide = () => {
-        setCurrentSlide((prev) => (prev + 1) % products.length);
-    };
-
-    const prevSlide = () => {
-        setCurrentSlide((prev) => (prev - 1 + products.length) % products.length);
-    };
-
     return (
         <div className="relative w-full max-w-md mx-auto lg:max-w-lg">
-            <div className="relative h-80 sm:h-96 overflow-hidden rounded-3xl shadow-2xl border-4 border-white/20 backdrop-blur-md">
+            <div className="relative h-80 sm:h-96 overflow-hidden">
                 {products.map((product, index) => (
                     <div
                         key={product.id}
-                        className={`absolute inset-0 bg-black/20 transition-all duration-700 ease-in-out ${
+                        className={`absolute inset-0 transition-all duration-700 ease-in-out ${
                             index === currentSlide ? 'opacity-100 translate-x-0' : 'opacity-0'
                         } ${ index > currentSlide ? 'translate-x-full' : '-translate-x-full' }`}
                     >
@@ -70,7 +62,7 @@ const HeroProductCarousel = ({ products }: { products: Product[] }) => {
                             alt={product.name}
                             className="w-full h-full object-contain"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/10"></div>
+                        
                         <div className="absolute bottom-0 left-0 p-6">
                             <div className="mb-2 inline-block bg-brand-red text-white text-xs font-bold px-3 py-1 rounded-full">{product.discount}</div>
                             <h3 className="text-2xl font-bold text-white">{product.name}</h3>
@@ -79,14 +71,6 @@ const HeroProductCarousel = ({ products }: { products: Product[] }) => {
                     </div>
                 ))}
             </div>
-
-            {/* Controls */}
-            <button onClick={prevSlide} className="absolute left-0 top-1/2 -translate-y-1/2 p-3 bg-white/80 hover:bg-white rounded-full text-gray-800 shadow-lg transform -translate-x-1/2 hover:scale-110 transition-all">
-                <ChevronLeft size={24} />
-            </button>
-            <button onClick={nextSlide} className="absolute right-0 top-1/2 -translate-y-1/2 p-3 bg-white/80 hover:bg-white rounded-full text-gray-800 shadow-lg transform translate-x-1/2 hover:scale-110 transition-all">
-                <ChevronRight size={24} />
-            </button>
 
             {/* Dots */}
             <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex space-x-3">
