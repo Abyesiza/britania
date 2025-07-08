@@ -5,6 +5,7 @@ import { Award, Heart, Briefcase, Gift, Star, MapPin, Users, Clock, ChevronLeft,
 const useIntersectionObserver = <T extends HTMLElement = HTMLElement>(
   options: IntersectionObserverInit
 ): [React.RefObject<T>, boolean] => {
+  
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<T>(null);
 
